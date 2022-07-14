@@ -3,8 +3,6 @@
 
 #include <stdlib.h>
 
-char* filePath;
-char* outputPath;
 char* readFile(char* filePath);
 int writeFile(char* textContent, char* fileOutputPath);
 
