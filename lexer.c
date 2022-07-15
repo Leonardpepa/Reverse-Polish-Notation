@@ -51,7 +51,7 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == '\n'){
+    if(lexer->textContent[lexer->position]  == '\n' || lexer->textContent[lexer->position]  == 13 || lexer->textContent[lexer->position]  == '\r'){
         lexer->position++;
         lexer->helperPosition = 0;
         lexer->line++;
@@ -59,7 +59,7 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == ' ' || lexer->textContent[lexer->position]  == '\t' || lexer->textContent[lexer->position]  == 13){
+    if(lexer->textContent[lexer->position]  == ' ' || lexer->textContent[lexer->position]  == '\t'){
         lexer->position++;
         lexer->helperPosition++;
         lexer->lookAhead = (Token){"", T_error};
