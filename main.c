@@ -29,6 +29,7 @@ int main(int argc, char** argv){
     lexer->helperPosition = 0;
     lexer->textContent = code;
 
+    fprintf(stdout, "Lexer output: \n");
     while(lexer->lookAhead.type != T_EOF){
         getNextToken(lexer);
         if(lexer->lookAhead.type){

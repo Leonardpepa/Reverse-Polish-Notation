@@ -23,21 +23,43 @@ char* tokenAsString(TokenKind kind){
         return "Division";
     case T_EOF:
         return "EOF";
+    case T_semi:
+        return "Semicolon";
     default:
         return "Error";
     }
 }
 
 void getNextToken(Lexer* lexer){
+    
+    // parse integers 
+    if(isdigit(lexer->textContent[lexer->position])){
+        
+        int i = lexer->position;
+        while (isdigit(lexer->textContent[lexer->position])){   
+            lexer->position++;
+            lexer->helperPosition++;
+        }
+
+        char* number = (char*) malloc((lexer->position - i) * sizeof(char));
+
+        for(int k=0; k<lexer->position - i; k++){
+            number[k] = lexer->textContent[i+k];
+        }
+        number[lexer->position -  i] = '\0';
+        lexer->lookAhead = (Token){number, T_num};
+        return;
+    }
 
     if(lexer->textContent[lexer->position]  == '\n'){
         lexer->position++;
         lexer->helperPosition = 0;
         lexer->line++;
+        lexer->lookAhead = (Token){"", T_error};
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == ' ' || lexer->textContent[lexer->position]  == 13){
+    if(lexer->textContent[lexer->position]  == ' ' || lexer->textContent[lexer->position]  == '\t' || lexer->textContent[lexer->position]  == 13){
         lexer->position++;
         lexer->helperPosition++;
         lexer->lookAhead = (Token){"", T_error};
@@ -84,6 +106,17 @@ void getNextToken(Lexer* lexer){
 
         return;
     }
+
+    if(lexer->textContent[lexer->position]  == ';'){
+
+        lexer->lookAhead = (Token){";", T_semi};
+        lexer->position++;
+        lexer->helperPosition++;
+
+        return;
+    }
+
+    
 
     lexer->lookAhead = (Token){"error", T_error};
     fprintf(stderr, "Unexpected token: %c on line %d, position %d\n", lexer->textContent[lexer->position], lexer->line, lexer->helperPosition);

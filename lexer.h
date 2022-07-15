@@ -3,7 +3,7 @@
 
 #include<stdlib.h>
 
-typedef enum {T_error,T_EOF, T_num, T_add, T_minus, T_mul, T_div} TokenKind;
+typedef enum {T_error,T_EOF, T_num, T_add, T_minus, T_mul, T_div, T_semi} TokenKind;
 
 typedef struct{
     char* lexeme;
