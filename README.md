@@ -2,6 +2,7 @@
 Reverse Polish Notation handwriten lexer, parser and maybe little compiler
 
 # Project for learning and experimenting
+ ## created 7/15/2021 3am in the morning 
 
 # Makefile
   * make [Compiles the files needed for execution]
@@ -10,6 +11,7 @@ Reverse Polish Notation handwriten lexer, parser and maybe little compiler
 
 # Prerequisite
   * gcc compiler
+  * make [needed for make file otherwise you can compile the files by your self]
 
 
 # Minas Theodoros Charakopoulos
