@@ -1,9 +1,9 @@
-#ifndef FILE_HANDLER
-#define FILE_HANDLER
+#ifndef FILE_HANDLER_H
+#define FILE_HANDLER_H
 
-#include <stdlib.h>
+#include<stdlib.h>
 
-char* readFile(char* filePath);
+void readFile(char* filePath, char** str, int* size);
 int writeFile(char* textContent, char* fileOutputPath);
 
 #endif
