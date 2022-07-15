@@ -21,3 +21,4 @@ clean:
 	rm -f fileHandler.o
 	rm -f lexer.o
 	rm -f main.o
+	rm -f main

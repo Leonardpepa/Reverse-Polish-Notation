@@ -24,13 +24,16 @@ int main(int argc, char** argv){
     readFile(*argv, &code, &size);
     
     Lexer* lexer;
-    lexer->line = 0;
+    lexer->line = 1;
     lexer->position = 0;
+    lexer->helperPosition = 0;
     lexer->textContent = code;
 
     while(lexer->lookAhead.type != T_EOF){
         getNextToken(lexer);
-        fprintf(stdout, "lexeme: %s, token: %d\n", lexer->lookAhead.lexeme, lexer->lookAhead.type);
+        if(lexer->lookAhead.type){
+            fprintf(stdout, "line %d: lexeme: %s, token kind: %s\n",lexer->line, lexer->lookAhead.lexeme, tokenAsString(lexer->lookAhead.type));
+        }
     }
 
     return 0;

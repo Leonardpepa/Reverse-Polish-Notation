@@ -3,64 +3,93 @@
 #include<string.h>
 #include <assert.h>
 #include <stdbool.h>
+#include<ctype.h>
 #include"./lexer.h"
+
+char* tokenAsString(TokenKind kind){
+    switch (kind)
+    {
+    case T_error:
+        return "Error";
+    case T_num:
+        return "Number";
+    case T_add:
+        return "Addition";
+    case T_minus:
+        return "Subtraction";
+    case T_mul:
+        return "Multiplication";
+    case T_div:
+        return "Division";
+    case T_EOF:
+        return "EOF";
+    default:
+        return "Error";
+    }
+}
 
 void getNextToken(Lexer* lexer){
 
-    if(lexer->position == strlen(lexer->textContent)){
-        Token token;
-        token.lexeme = "end of line";
-        token.type = T_EOF;
+    if(lexer->textContent[lexer->position]  == '\n'){
+        lexer->position++;
+        lexer->helperPosition = 0;
+        lexer->line++;
+        return;
+    }
 
-        lexer->lookAhead = token;
-        
+    if(lexer->textContent[lexer->position]  == ' ' || lexer->textContent[lexer->position]  == 13){
+        lexer->position++;
+        lexer->helperPosition++;
+        lexer->lookAhead = (Token){"", T_error};
+        return;
+    }
+
+    if(lexer->position == strlen(lexer->textContent)){
+        lexer->lookAhead = (Token){"EOF", T_EOF};
         return;
     }
     
     if(lexer->textContent[lexer->position]  == '+'){
-        Token token;
-        token.lexeme = "+";
-        token.type = T_add;
 
+        lexer->lookAhead = (Token){"+", T_add};
         lexer->position++;
-        lexer->lookAhead = token;
+        lexer->helperPosition++;
 
         return;
     }
 
     if(lexer->textContent[lexer->position]  == '-'){
-        Token token;
-        token.lexeme = "-";
-        token.type = T_minus;
 
+        lexer->lookAhead = (Token){"-", T_minus};
         lexer->position++;
-        lexer->lookAhead = token;
+        lexer->helperPosition++;
 
         return;
     }
 
     if(lexer->textContent[lexer->position]  == '*'){
-        Token token;
-        token.lexeme = "*";
-        token.type = T_mul;
 
+        lexer->lookAhead = (Token){"*", T_mul};
         lexer->position++;
-        lexer->lookAhead = token;
+        lexer->helperPosition++;
 
         return;
     }
 
     if(lexer->textContent[lexer->position]  == '/'){
-        Token token;
-        token.lexeme = "/";
-        token.type = T_div;
 
+        lexer->lookAhead = (Token){"/", T_div};
         lexer->position++;
-        lexer->lookAhead = token;
+        lexer->helperPosition++;
 
         return;
     }
 
+    lexer->lookAhead = (Token){"error", T_error};
+    fprintf(stderr, "Unexpected token: %c on line %d, position %d\n", lexer->textContent[lexer->position], lexer->line, lexer->helperPosition);
+    lexer->position++;
+    lexer->helperPosition++;
+    return;
 }
 void peekNextToken(Lexer* lexer){
     assert(false && "Not implemented yet");
