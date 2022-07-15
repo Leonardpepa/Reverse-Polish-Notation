@@ -51,7 +51,7 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == '\n' || lexer->textContent[lexer->position]  == 13 || lexer->textContent[lexer->position]  == '\r'){
+    if(lexer->textContent[lexer->position]  == '\n' || lexer->textContent[lexer->position]  == '\r'){
         lexer->position++;
         lexer->helperPosition = 0;
         lexer->line++;
