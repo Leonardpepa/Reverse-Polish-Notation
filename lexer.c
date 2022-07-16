@@ -25,16 +25,51 @@ char* tokenAsString(TokenKind kind){
         return "EOF";
     case T_semi:
         return "Semicolon";
+    case T_start:
+        return "Start";
+    case T_end:
+        return "End";
     default:
         return "Error";
     }
 }
 
 void getNextToken(Lexer* lexer){
-    
+
+    // parse keywords
+
+    if(isalpha(lexer->textContent[lexer->position])){
+        int i = lexer->position;
+        
+        while (isalpha(lexer->textContent[lexer->position])){   
+            lexer->position++;
+            lexer->helperPosition++;
+        }
+
+        char* keyword = (char*) malloc((lexer->position - i) * sizeof(char));
+
+        for (int k=0; k<lexer->position - i; k++){
+            keyword[k] = lexer->textContent[i+k];
+        }
+        keyword[lexer->position -  i] = '\0';
+
+        if(strcmp(keyword, "start") == 0){
+            lexer->lookAhead = (Token){keyword, T_start};
+            return;
+        }else if (strcmp(keyword, "end") == 0){
+            lexer->lookAhead = (Token){keyword, T_end};
+            return;
+        }else{
+            lexer->lookAhead = (Token){"error", T_error};
+            fprintf(stdout, "Unexpected token: \"%s\", on line %d on position %ld\n", keyword, lexer->line, lexer->helperPosition - strlen(keyword));
+            free(keyword);
+            return;
+        }
+    }
+
     // parse integers 
     if(isdigit(lexer->textContent[lexer->position])){
-        
+
         int i = lexer->position;
         while (isdigit(lexer->textContent[lexer->position])){   
             lexer->position++;
@@ -122,6 +157,7 @@ void getNextToken(Lexer* lexer){
     fprintf(stderr, "Unexpected token: %c on line %d, position %d\n", lexer->textContent[lexer->position], lexer->line, lexer->helperPosition);
     lexer->position++;
     lexer->helperPosition++;
+
     return;
 }
 void peekNextToken(Lexer* lexer){

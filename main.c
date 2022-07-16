@@ -33,7 +33,7 @@ int main(int argc, char** argv){
     while(lexer->lookAhead.type != T_EOF){
         getNextToken(lexer);
         if(lexer->lookAhead.type){
-            fprintf(stdout, "line %d: lexeme: %s, token kind: %s\n",lexer->line, lexer->lookAhead.lexeme, tokenAsString(lexer->lookAhead.type));
+            fprintf(stdout, "Token found: line %d: lexeme: %s, token kind: %s\n",lexer->line, lexer->lookAhead.lexeme, tokenAsString(lexer->lookAhead.type));
         }
     }
 

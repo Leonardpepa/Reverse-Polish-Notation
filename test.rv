@@ -1,5 +1,10 @@
+start
 5 5 + ;
-
 55 65 77 + +;
 
-error tokens
+not recognized tokens
+
+
+end
+
+
