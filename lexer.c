@@ -90,14 +90,16 @@ void getNextToken(Lexer* lexer){
         lexer->position++;
         lexer->helperPosition = 0;
         lexer->line++;
-        lexer->lookAhead = (Token){"", T_error};
+        // lexer->lookAhead = (Token){"", T_error};
+        getNextToken(lexer);
         return;
     }
 
     if (lexer->textContent[lexer->position]  == ' ' || lexer->textContent[lexer->position]  == '\t' || lexer->textContent[lexer->position]  == '\r' ){
         lexer->position++;
         lexer->helperPosition++;
-        lexer->lookAhead = (Token){"", T_error};
+        // lexer->lookAhead = (Token){"", T_error};
+        getNextToken(lexer);
         return;
     }
 
