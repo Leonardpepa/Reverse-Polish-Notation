@@ -43,7 +43,7 @@ void getNextToken(Lexer* lexer){
 
         char* number = (char*) malloc((lexer->position - i) * sizeof(char));
 
-        for(int k=0; k<lexer->position - i; k++){
+        for (int k=0; k<lexer->position - i; k++){
             number[k] = lexer->textContent[i+k];
         }
         number[lexer->position -  i] = '\0';
@@ -51,7 +51,7 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == '\n' || lexer->textContent[lexer->position]  == '\r'){
+    if (lexer->textContent[lexer->position]  == '\n'){
         lexer->position++;
         lexer->helperPosition = 0;
         lexer->line++;
@@ -59,19 +59,19 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == ' ' || lexer->textContent[lexer->position]  == '\t'){
+    if (lexer->textContent[lexer->position]  == ' ' || lexer->textContent[lexer->position]  == '\t' || lexer->textContent[lexer->position]  == '\r' ){
         lexer->position++;
         lexer->helperPosition++;
         lexer->lookAhead = (Token){"", T_error};
         return;
     }
 
-    if(lexer->position == strlen(lexer->textContent)){
+    if (lexer->position == strlen(lexer->textContent)){
         lexer->lookAhead = (Token){"EOF", T_EOF};
         return;
     }
     
-    if(lexer->textContent[lexer->position]  == '+'){
+    if (lexer->textContent[lexer->position]  == '+'){
 
         lexer->lookAhead = (Token){"+", T_add};
         lexer->position++;
@@ -80,7 +80,7 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == '-'){
+    if (lexer->textContent[lexer->position]  == '-'){
 
         lexer->lookAhead = (Token){"-", T_minus};
         lexer->position++;
@@ -89,7 +89,7 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == '*'){
+    if (lexer->textContent[lexer->position]  == '*'){
 
         lexer->lookAhead = (Token){"*", T_mul};
         lexer->position++;
@@ -98,7 +98,7 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == '/'){
+    if (lexer->textContent[lexer->position]  == '/'){
 
         lexer->lookAhead = (Token){"/", T_div};
         lexer->position++;
@@ -107,7 +107,7 @@ void getNextToken(Lexer* lexer){
         return;
     }
 
-    if(lexer->textContent[lexer->position]  == ';'){
+    if (lexer->textContent[lexer->position]  == ';'){
 
         lexer->lookAhead = (Token){";", T_semi};
         lexer->position++;
