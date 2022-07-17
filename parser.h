@@ -16,7 +16,10 @@ void rec_rev();
 
 void match(TokenKind token);
 
-void syntax_error();
+void syntax_error(TokenKind token);
+
+void simple_syntax_error();
+
 
 
 
