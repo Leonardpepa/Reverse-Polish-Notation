@@ -1,0 +1,7 @@
+s ::= start rev ; end
+rev ::= rev rev op | num
+
+LL grammar
+s ::= start rev ; end
+rev ::= num rec_rev
+rec_rev ::= rev op rec_rev | e

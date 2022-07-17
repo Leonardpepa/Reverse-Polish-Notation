@@ -5,6 +5,7 @@
 #include<string.h>
 #include "./fileHandler.h"
 #include "./lexer.h"
+#include "./parser.h"
 
 
 int main(int argc, char** argv){
@@ -29,12 +30,12 @@ int main(int argc, char** argv){
     lexer->helperPosition = 0;
     lexer->textContent = code;
     
-    fprintf(stdout, "Lexer output: \n");
-    while(lexer->lookAhead.type != T_EOF){
-        getNextToken(lexer);
-        fprintf(stdout, "Token found: line %d: lexeme: %s, token kind: %s\n",lexer->line, lexer->lookAhead.lexeme, tokenAsString(lexer->lookAhead.type));
-        
-    }
+    // get lookahead token
+
+    getNextToken(lexer);
+
+    // parse
+    parse_code(lexer);
 
     return 0;
 }

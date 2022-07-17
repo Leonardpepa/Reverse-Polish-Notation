@@ -13,14 +13,8 @@ char* tokenAsString(TokenKind kind){
         return "Error";
     case T_num:
         return "Number";
-    case T_add:
-        return "Addition";
-    case T_minus:
-        return "Subtraction";
-    case T_mul:
-        return "Multiplication";
-    case T_div:
-        return "Division";
+    case T_op:
+        return "Math op";
     case T_EOF:
         return "EOF";
     case T_semi:
@@ -110,7 +104,7 @@ void getNextToken(Lexer* lexer){
     
     if (lexer->textContent[lexer->position]  == '+'){
 
-        lexer->lookAhead = (Token){"+", T_add};
+        lexer->lookAhead = (Token){"+", T_op};
         lexer->position++;
         lexer->helperPosition++;
 
@@ -119,7 +113,7 @@ void getNextToken(Lexer* lexer){
 
     if (lexer->textContent[lexer->position]  == '-'){
 
-        lexer->lookAhead = (Token){"-", T_minus};
+        lexer->lookAhead = (Token){"-", T_op};
         lexer->position++;
         lexer->helperPosition++;
 
@@ -128,7 +122,7 @@ void getNextToken(Lexer* lexer){
 
     if (lexer->textContent[lexer->position]  == '*'){
 
-        lexer->lookAhead = (Token){"*", T_mul};
+        lexer->lookAhead = (Token){"*", T_op};
         lexer->position++;
         lexer->helperPosition++;
 
@@ -137,7 +131,7 @@ void getNextToken(Lexer* lexer){
 
     if (lexer->textContent[lexer->position]  == '/'){
 
-        lexer->lookAhead = (Token){"/", T_div};
+        lexer->lookAhead = (Token){"/", T_op};
         lexer->position++;
         lexer->helperPosition++;
 
