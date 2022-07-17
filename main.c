@@ -14,7 +14,7 @@ int main(int argc, char** argv){
     **argv++;
 
     if(argc == 0){
-        fprintf(stderr, "Please provide a file to proccess\n");
+        fprintf(stderr, "Please provide a file\n");
         exit(1);
     }
     // variable to store source code for lexer
@@ -22,7 +22,7 @@ int main(int argc, char** argv){
     // size of the file
     int size;
 
-    readFile(*argv, &code, &size);
+    readFile(argv[0], &code, &size);
     
     Lexer* lexer;
     lexer->line = 1;
