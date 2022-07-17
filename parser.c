@@ -6,7 +6,7 @@
 void parse_code(Lexer* lex){
     lexer = lex;
     s();
-    fprintf(stdout, "Parse completed\n");
+    fprintf(stdout, "Parsing completed with no errors\n");
 }
 
 void s(){
@@ -43,6 +43,7 @@ void rec_rev(){
 void match(TokenKind token){
     if(lexer->lookAhead.type == token){
         getNextToken(lexer);
+        printToken(lexer);
     }else{
         syntax_error();
         fprintf(stderr, "Expected %s but found %s\n", tokenAsString(token), tokenAsString(lexer->lookAhead.type));

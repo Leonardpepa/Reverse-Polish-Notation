@@ -31,10 +31,12 @@ int main(int argc, char** argv){
     lexer->textContent = code;
     
     // get lookahead token
-
     getNextToken(lexer);
+    // print lexer
 
-    // parse
+    // print the first look ahead token
+    fprintf(stdout, "Tokens Found by lexical analysis \n");
+    printToken(lexer);
     parse_code(lexer);
 
     return 0;
