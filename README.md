@@ -13,6 +13,10 @@ Reverse Polish Notation handwriten lexer, parser and maybe little compiler
   * gcc compiler
   * make [needed for make file otherwise you can compile the files by your self]
 
+# LL Grammar
+  * s ::= start rev ; end
+  * rev ::= num rec_rev
+  * rec_rev ::= rev op rec_rev | epsilon
 
 # Minas Theodoros Charakopoulos
   * enjoy my friend
