@@ -6,7 +6,11 @@
 void parse_code(Lexer* lex){
     lexer = lex;
     s();
-    fprintf(stdout, "Parsing completed with no errors\n");
+    if(lexer->lookAhead.type == T_EOF){
+        fprintf(stdout, "Parsing completed with no errors\n");
+    }else{
+        simple_syntax_error();
+    }
 }
 
 void s(){
