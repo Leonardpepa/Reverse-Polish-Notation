@@ -67,7 +67,8 @@ void rec_rev(){
         match(T_op);
         rec_rev();
     }else if(lexer->lookAhead.type != T_op && lexer->lookAhead.type != T_semi){
-        simple_syntax_error();
+        TokenKind tokens[] = {T_op, T_semi};
+        multiple_syntax_error(tokens, 2);
     }
 }
 
@@ -89,4 +90,17 @@ void syntax_error(TokenKind token){
 void simple_syntax_error(){
     fprintf(stderr, "Syntax Error reading %s at line %d position %d\n", tokenAsString(lexer->lookAhead.type), lexer->line, lexer->helperPosition);
     exit(1);
+}
+
+void multiple_syntax_error(TokenKind array[], int size){
+    fprintf(stderr, "Syntax Error reading %s at line %d position %d\n", tokenAsString(lexer->lookAhead.type), lexer->line, lexer->helperPosition);
+    fprintf(stderr, "Expected one of these tokens ");
+    
+    for(int i=0; i<size; i++){
+        fprintf(stderr, "%s, ", tokenAsString(array[i]));    
+    }
+
+    fprintf(stderr, "\n");    
+
+    exit(1); 
 }

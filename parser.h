@@ -26,6 +26,7 @@ void syntax_error(TokenKind token);
 
 void simple_syntax_error();
 
+void multiple_syntax_error(TokenKind array[], int size);
 
 
 

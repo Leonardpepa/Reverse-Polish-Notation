@@ -14,7 +14,7 @@ char* tokenAsString(TokenKind kind){
     case T_num:
         return "Number";
     case T_op:
-        return "Math op";
+        return "op";
     case T_EOF:
         return "EOF";
     case T_semi:
