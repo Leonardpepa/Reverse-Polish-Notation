@@ -9,7 +9,7 @@ void parse_code(Lexer* lex){
     if(lexer->lookAhead.type == T_EOF){
         fprintf(stdout, "Parsing completed with no errors\n");
     }else{
-        simple_syntax_error();
+        syntax_error(T_EOF);
     }
 }
 
