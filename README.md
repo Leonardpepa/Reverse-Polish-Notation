@@ -15,10 +15,12 @@ Reverse Polish Notation handwriten lexer, parser and maybe little compiler
 
 # LL Grammar
   * s ::= start stmts end
-  * stmts ::= stmt; stmts | stmt;
+  * stmts ::= stmt  ;  listStmts
+  * listStmts ::=  stmts  | EPSILON
   * stmt ::= rev
   * rev ::= num rec_rev
-  * rec_rev ::= rev op rec_rev | epsilon
+  * rec_rev ::= rev op rec_rev | EPSILON
+
 
 # Minas Theodoros Charakopoulos
   * enjoy my friend

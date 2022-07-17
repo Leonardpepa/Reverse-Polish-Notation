@@ -16,8 +16,7 @@ void parse_code(Lexer* lex){
 void s(){
     if (lexer->lookAhead.type == T_start){
         match(T_start);
-        rev();
-        match(T_semi);
+        stmts();
         match(T_end);
     }else{
         syntax_error(T_start);
@@ -25,11 +24,39 @@ void s(){
     
 }
 
+
+void stmts(){
+    if(lexer->lookAhead.type == T_num){
+        stmt();
+        match(T_semi);
+        listStmts();
+    }else{
+        syntax_error(T_num);
+    }
+}
+
+void listStmts(){
+    if(lexer->lookAhead.type == T_num){
+        stmts();
+    }else if(lexer->lookAhead.type == T_semi){
+        syntax_error(T_semi);
+    }
+}
+
+void stmt(){
+    if(lexer->lookAhead.type == T_num){
+        rev();
+    }else{
+        syntax_error(T_num);
+    }
+}
+
+
 void rev(){
-    if (lexer->lookAhead.type == T_num){
+    if(lexer->lookAhead.type == T_num){
         match(T_num);
         rec_rev();
-    }else{   
+    }else{
         syntax_error(T_num);
     }
 }

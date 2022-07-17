@@ -10,6 +10,12 @@ void parse_code(Lexer* lex);
 
 void s();
 
+void stmts();
+
+void listStmts();
+
+void stmt();
+
 void rev();
 
 void rec_rev();
