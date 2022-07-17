@@ -14,7 +14,9 @@ Reverse Polish Notation handwriten lexer, parser and maybe little compiler
   * make [needed for make file otherwise you can compile the files by your self]
 
 # LL Grammar
-  * s ::= start rev ; end
+  * s ::= start stmts end
+  * stmts ::= stmt; stmts | stmt;
+  * stmt ::= rev
   * rev ::= num rec_rev
   * rec_rev ::= rev op rec_rev | epsilon
 
