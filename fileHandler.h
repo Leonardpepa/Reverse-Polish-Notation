@@ -5,6 +5,8 @@
 
 void readFile(char* filePath, char** str, int* size);
 int writeFile(char* textContent, char* fileOutputPath);
+int appendToFile(char* textContent, char* fileOutputPath);
+
 
 #endif
 

@@ -19,8 +19,9 @@ lexer.o: lexer.c lexer.h
 parser.o: parser.c parser.h
 	gcc -c parser.c
 
-clean: 
-	rm -rf ./*.o
+clean:
+	rm -f ./*.txt
+	rm -f ./*.o
 	rm -f fileHandler.o
 	rm -f lexer.o
 	rm -f parser.o

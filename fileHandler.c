@@ -9,6 +9,7 @@ void readFile(char* filePath, char** str, int* size){
     FILE* file = fopen(filePath, "r");
 
     if(file == NULL){
+        fprintf(stderr, "Error while opening file: %s\n", filePath);
         str = NULL;
         *size = -1;
     }
@@ -36,8 +37,35 @@ void readFile(char* filePath, char** str, int* size){
 }
 
 int writeFile(char* textContent, char* fileOutputPath){
-    (void) textContent;
-    (void) fileOutputPath;
+    FILE* file = fopen(fileOutputPath, "w");
 
-    assert(false && "Not implemented yet");
+    if(file == NULL){
+        fprintf(stderr, "Error while proccessing file: %s\n", fileOutputPath);
+        return 0;
+    }
+
+    for(int i=0; i<strlen(textContent); i++){
+        fprintf(file, "%c", textContent[i]);
+    }
+
+    fclose(file);
+    return 1;
 }
+
+
+int appendToFile(char* textContent, char* fileOutputPath){
+    FILE* file = fopen(fileOutputPath, "a");
+
+    if(file == NULL){
+        fprintf(stderr, "Error while proccessing file: %s\n", fileOutputPath);
+        return 0;
+    }
+
+    for(int i=0; i<strlen(textContent); i++){
+        fprintf(file, "%c", textContent[i]);
+    }
+
+    fclose(file);
+    return 1;
+}
+
