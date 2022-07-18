@@ -9,7 +9,7 @@ Reverse Polish Notation handwriten lexer, parser and maybe little compiler
   * make clean [cleans files]
   
 # How to run
-  * ./run <filename>
+  * ./run < filename >
 
 # Prerequisite
   * gcc compiler
@@ -22,10 +22,3 @@ Reverse Polish Notation handwriten lexer, parser and maybe little compiler
   * stmt ::= rev
   * rev ::= num rec_rev
   * rec_rev ::= rev op rec_rev | EPSILON
-
-
-# Minas Theodoros Charakopoulos
-  * enjoy my friend
-  * creating software is like creating art (σημειωσε το αυτο χαχα)
-  * τρεξτο στο wls καλυτερα που τα εχεις ολα ετοιμα
-  
