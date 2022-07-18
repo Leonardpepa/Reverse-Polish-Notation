@@ -45,7 +45,7 @@ char* opAsString(char op){
 }
 
 void printToken(Lexer* lexer){
-    fprintf(stdout, "Line %d: Token found, lexeme: %s kind: %s\n", lexer->line, lexer->lookAhead.lexeme, tokenAsString(lexer->lookAhead.type));
+    fprintf(stdout, "Line %d: Token found, lexeme: %s, kind: %s\n", lexer->line, lexer->lookAhead.lexeme, tokenAsString(lexer->lookAhead.type));
 }
 
 
