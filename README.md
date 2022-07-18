@@ -13,9 +13,12 @@
   * keywords [start, end]
   * semicolon [to seperate the expressions]
   * EOF
-  
+
 # Parser
   Simple top down parser, implemented with recursive descent.
+
+# Code generation
+  * code generated for jasmin assember that can run on the java virtual machine
 
 # Makefile
   * make [Compiles the files needed for execution]
