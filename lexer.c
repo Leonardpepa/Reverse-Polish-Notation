@@ -28,6 +28,22 @@ char* tokenAsString(TokenKind kind){
     }
 }
 
+char* opAsString(char op){
+    switch (op)
+    {
+    case '+':
+        return "iadd";
+    case '-':
+        return "isub";
+    case '*':
+        return "imul";
+    case '/':
+        return "idiv";
+    default:
+        exit(1);
+    }
+}
+
 void printToken(Lexer* lexer){
     fprintf(stdout, "Line %d: Token found, lexeme: %s kind: %s\n", lexer->line, lexer->lookAhead.lexeme, tokenAsString(lexer->lookAhead.type));
 }

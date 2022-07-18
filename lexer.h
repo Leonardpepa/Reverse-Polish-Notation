@@ -20,6 +20,7 @@ typedef struct{
 
 
 char* tokenAsString(TokenKind kind);
+char* opAsString(char op);
 void getNextToken(Lexer* lexer);
 void peekNextToken(Lexer* lexer);
 void printToken(Lexer* lexer);

@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<string.h>
 #include"./parser.h"
+#include"./jvm_intermed.h"
 
 void parse_code(Lexer* lex){
     lexer = lex;
@@ -15,9 +16,11 @@ void parse_code(Lexer* lex){
 
 void s(){
     if (lexer->lookAhead.type == T_start){
+        createBaseClass("test.j");
         match(T_start);
         stmts();
         match(T_end);
+        addEndMethod("test.j");
     }else{
         syntax_error(T_start);
     }
@@ -54,6 +57,7 @@ void stmt(){
 
 void rev(){
     if(lexer->lookAhead.type == T_num){
+        addInteger(lexer->lookAhead.lexeme, "test.j");
         match(T_num);
         rec_rev();
     }else{
@@ -64,6 +68,7 @@ void rev(){
 void rec_rev(){
     if(lexer->lookAhead.type == T_num){
         rev();
+        addInstruction(opAsString(lexer->lookAhead.lexeme[0]), "test.j");
         match(T_op);
         rec_rev();
     }else if(lexer->lookAhead.type != T_op && lexer->lookAhead.type != T_semi){
