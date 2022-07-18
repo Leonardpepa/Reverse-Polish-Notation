@@ -23,7 +23,16 @@ int main(int argc, char** argv){
     int size;
 
     readFile(argv[0], &code, &size);
+
     
+    char* jasminFile = (char*) malloc((strlen(argv[0]) + 2) *  sizeof(char));
+    
+    strcpy(jasminFile, argv[0]);
+    jasminFile[strlen(argv[0])] = '.';
+    jasminFile[strlen(argv[0]) + 1] = 'j';
+    jasminFile[strlen(argv[0]) + 2] = '\0';
+
+
     Lexer* lexer;
     lexer->line = 1;
     lexer->position = 0;
@@ -39,7 +48,7 @@ int main(int argc, char** argv){
     // print the first look ahead token
     printToken(lexer);
 
-    parse_code(lexer, "test.j");
+    parse_code(lexer,  jasminFile);
 
     return 0;
 }

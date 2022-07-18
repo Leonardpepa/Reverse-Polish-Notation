@@ -25,7 +25,23 @@ void addInteger(char* lexeme, char* filepath){
 }
 
 void createBaseClass(char* filepath){
-    writeFile(".class public test",filepath);
+
+    char* cl = (char*) malloc((strlen(filepath)) * sizeof(char));
+
+    for(int i=0; i<strlen(filepath); i++){
+        if(filepath[i] == '.'){
+            cl[i] = '\0';
+            break;
+        }else{
+            cl[i] = filepath[i];
+        }
+    }
+
+    char text[300];
+
+    sprintf(text, ".class public %s", cl);
+
+    writeFile(text, filepath);
     addInstruction(".super java/lang/Object", filepath);
     appendToFile("\n", filepath);
     addInstruction(".method public static main([Ljava/lang/String;)V" , filepath);
