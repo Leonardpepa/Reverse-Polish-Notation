@@ -1,7 +1,13 @@
 #!/bin/sh
-echo "compiling and running"
-make
-./main $1
-jasmin $1.j
-java $1
-echo "** Code Output: **"
+if [ -z "$1" ]
+then
+      echo "Please provide a file"
+else
+    echo "compiling and running"
+    make
+    ./main $1
+    echo "Running code on jvm.."
+    echo "** Code Output: **"
+    jasmin $1.j
+    java $1
+fi

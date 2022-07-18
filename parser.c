@@ -35,6 +35,7 @@ void stmts(){
     if(lexer->lookAhead.type == T_num){
         stmt();
         match(T_semi);
+        addPrint(outputfile);
         listStmts();
     }else{
         syntax_error(T_num);

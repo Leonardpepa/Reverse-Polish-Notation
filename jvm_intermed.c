@@ -4,6 +4,16 @@
 #include"./fileHandler.h"
 #include"./jvm_intermed.h"
 
+void addPrint(char* filepath){
+    addInstruction("getstatic java/lang/System/out Ljava/io/PrintStream;", filepath);
+    addInstruction("swap", filepath);
+    addInstruction("invokevirtual java/io/PrintStream/print(I)V", filepath);
+
+    addInstruction("getstatic java/lang/System/out Ljava/io/PrintStream;", filepath);
+    addInstruction("ldc \"\n\"", filepath);
+    addInstruction("invokevirtual java/io/PrintStream/print(Ljava.lang.String;)V", filepath);
+}
+
 void addInteger(char* lexeme, char* filepath){
     int x = atoi(lexeme);
     char instruction[200];
