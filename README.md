@@ -1,15 +1,28 @@
 # Reverse-Polish-Notation
-Reverse Polish Notation handwriten lexer, parser and maybe little compiler generating jvm assembly
+  Reverse Polish notation lexer, parser and very small compiler that generates jvm assembly code.
+  The programs just calculates the mathematical expression (+, -, * , /) and prints out the answer.
 
 # Project for learning and experimenting
- ## created 7/15/2021 3am in the morning 
+  the purpose of this project is to create this simple compiler without any compiler generator tools.
+  all the compoments are handwritten by me (simple lexer, top down parser and code generation)
+
+# Lexer
+  tokens:
+  * integers 
+  * math op [+, -, *, /]
+  * keywords [start, end]
+  * semicolon [to seperate the expressions]
+  * EOF
+  
+# Parser
+  Simple top down parser, implemented with recursive descent.
 
 # Makefile
   * make [Compiles the files needed for execution]
   * make clean [cleans files]
   
 # How to run
-  * ./run < filename >
+  * ./run < filename > [only files without extension supported]
 
 # Prerequisite
   * gcc compiler
