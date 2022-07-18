@@ -32,12 +32,14 @@ int main(int argc, char** argv){
     
     // get lookahead token
     getNextToken(lexer);
-    // print lexer
 
-    // print the first look ahead token
+    // print lexer
     fprintf(stdout, "Tokens Found by lexical analysis \n");
+    
+    // print the first look ahead token
     printToken(lexer);
-    parse_code(lexer);
+
+    parse_code(lexer, "test.j");
 
     return 0;
 }

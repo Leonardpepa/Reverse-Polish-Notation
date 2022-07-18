@@ -6,7 +6,7 @@
 
 Lexer* lexer;
 
-void parse_code(Lexer* lex);
+void parse_code(Lexer* lex, char* file);
 
 void s();
 

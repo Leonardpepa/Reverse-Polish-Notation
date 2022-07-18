@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "compiling and running"
+make
+./main $1
+jasmin $1.j
+java $1
+echo "** Code Output: **"

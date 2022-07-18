@@ -2,8 +2,6 @@
 
 default: compile
 
-run: compile 
-	./main test.rv
 
 compile: fileHandler.o lexer.o parser.o jvm_intermed.o main.o
 

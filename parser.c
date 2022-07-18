@@ -4,8 +4,11 @@
 #include"./parser.h"
 #include"./jvm_intermed.h"
 
-void parse_code(Lexer* lex){
+char* outputfile;
+
+void parse_code(Lexer* lex, char* file){
     lexer = lex;
+    outputfile = file;
     s();
     if(lexer->lookAhead.type == T_EOF){
         fprintf(stdout, "\nParsing completed with no errors\n");
@@ -16,11 +19,11 @@ void parse_code(Lexer* lex){
 
 void s(){
     if (lexer->lookAhead.type == T_start){
-        createBaseClass("test.j");
+        createBaseClass(outputfile);
         match(T_start);
         stmts();
         match(T_end);
-        addEndMethod("test.j");
+        addEndMethod(outputfile);
     }else{
         syntax_error(T_start);
     }
@@ -57,7 +60,7 @@ void stmt(){
 
 void rev(){
     if(lexer->lookAhead.type == T_num){
-        addInteger(lexer->lookAhead.lexeme, "test.j");
+        addInteger(lexer->lookAhead.lexeme, outputfile);
         match(T_num);
         rec_rev();
     }else{
@@ -68,7 +71,7 @@ void rev(){
 void rec_rev(){
     if(lexer->lookAhead.type == T_num){
         rev();
-        addInstruction(opAsString(lexer->lookAhead.lexeme[0]), "test.j");
+        addInstruction(opAsString(lexer->lookAhead.lexeme[0]), outputfile);
         match(T_op);
         rec_rev();
     }else if(lexer->lookAhead.type != T_op && lexer->lookAhead.type != T_semi){

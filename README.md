@@ -7,7 +7,9 @@ Reverse Polish Notation handwriten lexer, parser and maybe little compiler
 # Makefile
   * make [Compiles the files needed for execution]
   * make clean [cleans files]
-  * make run [compiles files and runs main.c with input from the test.rv file]
+  
+# How to run
+  * ./run <filename>
 
 # Prerequisite
   * gcc compiler
