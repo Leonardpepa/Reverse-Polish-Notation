@@ -44,6 +44,14 @@ void createBaseClass(char* filepath){
     writeFile(text, filepath);
     addInstruction(".super java/lang/Object", filepath);
     appendToFile("\n", filepath);
+
+    addInstruction(".method public <init>()V", filepath);
+    addInstruction(" aload_0", filepath);
+    addInstruction(" invokespecial java/lang/Object/<init>()V", filepath);
+    addInstruction(" return", filepath);
+    addInstruction(".end method", filepath);
+
+    appendToFile("\n", filepath);
     addInstruction(".method public static main([Ljava/lang/String;)V" , filepath);
     addInstruction(" .limit locals 10" , filepath);
     addInstruction(" .limit stack 10" , filepath);
